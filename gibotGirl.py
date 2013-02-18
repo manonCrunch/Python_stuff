@@ -9,7 +9,7 @@ class BotManon(ircbot.SingleServerIRCBot):
 	
 	def __init__(self):
 		ircbot.SingleServerIRCBot.__init__(self, [("irc.freenode.net", 6667)], "gibotGirl", "Bot réalisé en Python avec ircbot")
-		self.mots = ["bonjour", "salut", "!volka", "!coffee", "!punch", "bye", "!help"]
+		self.mots = ["bonjour", "salut", "!volka", "!coffee", "!punch", "bye", "!help", "!tea"]
 		self.actions = ["donne un coup de fouet à", "donne un coup de poing à", "donne un coup de pied à", "casse les cotes de", "donne un coup de fouet à", "donne un coup de pelle à", "donne un coup de tête à"] 		
 
 	def on_welcome(self, serv, ev):
@@ -60,6 +60,12 @@ class BotManon(ircbot.SingleServerIRCBot):
 							serv.action(canal, "{0} paye une volka a {1}".format(auteur, arg2[1]))
 							break
 							
+				if (mot == "!tea"):
+					if nombreArg < 2:
+						serv.action(canal, "gibotGirl met la bouilloire sur le feu...")
+						serv.action(canal, "et ça chauffe")
+						serv.action(canal, "gibotGirl sert du thé à {0}".format(auteur))
+						break
 	def on_action(self, serv, ev):
 		auteur = irclib.nm_to_n(ev.source())
 		canal = ev.target()
