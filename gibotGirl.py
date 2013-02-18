@@ -28,8 +28,8 @@ class BotManon(ircbot.SingleServerIRCBot):
 				if (mot == "!bj") or (mot == "!jb"):
 					serv.action(canal, "gibotGirl sert un jambon-beure à {0}".format(auteur))
 					break
-				if (mot == "ffq"):
-					serv.action(canal, "http://crunchbanglinux-fr.org/wiki/?do=search&i{0}".format(arg2[1]))  
+				if (mot == "!ffq"):
+					serv.action(canal, "http://crunchbanglinux-fr.org/wiki/?do=search&id"," {0}".format(arg2[1]))  
 					break
 				if (mot == "bonjour") or (mot == "salut"):
 					serv.action(canal, "Salut {0}".format(auteur))
