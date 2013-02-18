@@ -3,6 +3,7 @@
  
 import irclib
 import ircbot
+import time
 from random import randrange
 
 class BotManon(ircbot.SingleServerIRCBot):
@@ -25,15 +26,18 @@ class BotManon(ircbot.SingleServerIRCBot):
 		for mot in self.mots:
 
 			if mot in arg2[0]:
-				if (mot == "!bj") or (mot == "!jb"):
-					serv.action(canal, "gibotGirl sert un jambon-beure à {0}".format(auteur))
-					break
-				if (mot == "!ffq"):
-					serv.action(canal, "http://crunchbanglinux-fr.org/wiki/?do=search&id"," {0}".format(arg2[1]))  
-					break
+				
+				if (mot == "!jb"):
+					serv.action(canal, "gibotGirl sert un jambon-beurre à {0}".format(auteur))
+				
+				if (mot == "!bj"):
+					serv.action(canal, "gibotGirl sert un beurre-jambon à {0}".format(auteur))
+							
+				if (mot == "!ff"):
+					srv.action(canal, "La solution pour {0} se trouve sur:".format(arg2[1]))			
+							
 				if (mot == "bonjour") or (mot == "salut"):
 					serv.action(canal, "Salut {0}".format(auteur))
-					break 
 					
 				if (mot == "!coffee"):
 					if nombreArg < 2 :
@@ -69,6 +73,8 @@ class BotManon(ircbot.SingleServerIRCBot):
 					if nombreArg < 2:
 						serv.action(canal, "gibotGirl met la bouilloire sur le feu...")
 						serv.action(canal, "et ça chauffe")
+						serv.action(canal, "et ça infuse")
+						time.sleep(4)	
 						serv.action(canal, "gibotGirl sert du thé à {0}".format(auteur))
 						break
 	def on_action(self, serv, ev):
