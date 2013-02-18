@@ -10,7 +10,7 @@ class BotManon(ircbot.SingleServerIRCBot):
 	def __init__(self):
 		ircbot.SingleServerIRCBot.__init__(self, [("irc.freenode.net", 6667)], "gibotGirl", "Bot réalisé en Python avec ircbot")
 		self.mots = ["bonjour", "salut", "!volka", "!coffee", "!punch", "bye", "!help"]
-		self.actions = ["donne un coup de fouet à", "donne un coup de poing à", "donne un coup de pied à", "casse les cotes de"] 		
+		self.actions = ["donne un coup de fouet à", "donne un coup de poing à", "donne un coup de pied à", "casse les cotes de", "donne un coup de fouet à", "donne un coup de pelle à", "donne un coup de tête à"] 		
 
 	def on_welcome(self, serv, ev):
 		serv.join("#crunchbang-fr")
