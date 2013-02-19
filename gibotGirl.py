@@ -65,9 +65,6 @@ class BotManon(ircbot.SingleServerIRCBot):
 						serv.action(canal, "et sur le fofo")
 						serv.action(canal, "http://crunchbanglinux-fr.org/forum/search.php?action=search&keywords={0}".format(arg2[1]))
 							
-				if (mot == "bonjour") or (mot == "salut"):
-					serv.action(canal, "Salut {0}".format(auteur))
-					
 				if (mot == "&coffee"):
 					if nombreArg < 2 :
 						serv.action(canal, "gibotGirl paye son café à {0}".format(auteur))
