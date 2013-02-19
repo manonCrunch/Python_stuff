@@ -9,9 +9,9 @@ class BotManon(ircbot.SingleServerIRCBot):
 	
 	def __init__(self):
 		ircbot.SingleServerIRCBot.__init__(self, [("irc.freenode.net", 6667)], "gibotGirl", "Bot réalisé en Python avec ircbot")
-		self.mots = ["bonjour", "salut", "bye", "!help", "!list_plugins"]
+		self.mots = ["bonjour", "salut", "bye", "&help", "&list_plugins"]
 		self.punch = ["donne un coup de fouet à", "donne un coup de poing à", "donne un coup de pied à", "casse les cotes de", "donne un coup de fouet à", "donne un coup de pelle à", "donne un coup de tête à"]
-		self.plugins = ["!volka", "!coffee", "!punch", "!fuck"]		
+		self.plugins = ["&volka", "&coffee", "&punch", "&fuck"]		
 
 	def on_welcome(self, serv, ev):
 		serv.join("#crunchbang-fr")
@@ -31,10 +31,10 @@ class BotManon(ircbot.SingleServerIRCBot):
 					serv.action(canal, "Salut {0}".format(auteur))
 					break 
 				
-				elif (mot == "!help"):
+				elif (mot == "&help"):
 					if nombreArg < 2:
-						serv.action(canal, "<!help>  <plugins> ")
-						serv.action(canal, "<!list_plugins>")
+						serv.action(canal, "<&help>  <plugins> ")
+						serv.action(canal, "<&list_plugins>")
 						break
 					else:
 						for mot2 in self.plugins:
@@ -44,7 +44,7 @@ class BotManon(ircbot.SingleServerIRCBot):
 							else:
 								serv.action(canal, "Plugin non existant")
 								break
-				elif (mot == "!list_plugins"):
+				elif (mot == "&list_plugins"):
 					serv.action(canal, "Plugins: {0}".format(self.plugins))
 					break
 				
@@ -52,7 +52,7 @@ class BotManon(ircbot.SingleServerIRCBot):
 			
 			if mot in arg2[0]:
 				
-				if (mot == "!coffee"):
+				if (mot == "&coffee"):
 					if nombreArg < 2 :
 						serv.action(canal, "gibotGirl paye son café à {0}".format(auteur))
 						break
@@ -60,13 +60,13 @@ class BotManon(ircbot.SingleServerIRCBot):
 						serv.action(canal, "{0} paye son café à {1}".format(auteur, arg2[1]))
 						break
 						
-				if (mot == "!punch"):
+				if (mot == "&punch"):
 					if nombreArg >= 2:
 						act  = randrange(0,len(self.punch))
 						serv.action(canal, "{0} {1}".format(self.punch[act], arg2[1]))
 						break
 						
-				if (mot == "!volka"):
+				if (mot == "&volka"):
 					if nombreArg < 2:
 						serv.action(canal, "gibotGirl trinque avec {0}".format(auteur))
 						break
