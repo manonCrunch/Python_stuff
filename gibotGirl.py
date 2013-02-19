@@ -10,7 +10,7 @@ class BotManon(ircbot.SingleServerIRCBot):
 	
 	def __init__(self):
 		ircbot.SingleServerIRCBot.__init__(self, [("irc.freenode.net", 6667)], "gibotGirl", "Bot réalisé en Python avec ircbot")
-		self.mots = ["bonjour", "salut", "&volka", "&coffee", "&punch", "bye", "&help", "!&ea", "&bj", "&jb", "&fuck", "&pipe"]
+		self.mots = ["bonjour", "salut", "&volka", "&coffee", "&punch", "bye", "&help", "!&ea", "&bj", "&jb", "&fuck", "&pipe", "&ff"]
 		self.actions = ["donne un coup de fouet à", "donne un coup de poing à", "donne un coup de pied à", "casse les cotes de", "donne un coup de fouet à", "donne un coup de pelle à", "donne un coup de tête à"] 		
 
 	def on_welcome(self, serv, ev):
@@ -59,8 +59,9 @@ class BotManon(ircbot.SingleServerIRCBot):
 					serv.action(canal, "gibotGirl sert un beurre-jambon à {0}".format(auteur))
 							
 				if (mot == "&ff"):
-					serv.action(canal, "machin_bidule")	
-					serv.action(canal, "La solution pour {0} se trouve sur:".format(arg2[1]))			
+					if nombreArg2 >= 2:
+						serv.action(canal, "La solution pour {0} se trouve sur:".format(arg2[1]))
+						serv.action(canal, "http://crunchbanglinux-fr.org/wiki/?do=search&id={0}".format(arg2[1]))
 							
 				if (mot == "bonjour") or (mot == "salut"):
 					serv.action(canal, "Salut {0}".format(auteur))
