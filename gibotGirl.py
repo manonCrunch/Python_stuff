@@ -59,7 +59,7 @@ class BotManon(ircbot.SingleServerIRCBot):
 					serv.action(canal, "gibotGirl sert un beurre-jambon à {0}".format(auteur))
 							
 				if (mot == "&ff"):
-					if nombreArg2 >= 2:
+					if nombreArg >= 2:
 						serv.action(canal, "La solution pour {0} se trouve sur:".format(arg2[1]))
 						serv.action(canal, "http://crunchbanglinux-fr.org/wiki/?do=search&id={0}".format(arg2[1]))
 							
