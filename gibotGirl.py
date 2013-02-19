@@ -60,8 +60,10 @@ class BotManon(ircbot.SingleServerIRCBot):
 							
 				if (mot == "&ff"):
 					if nombreArg >= 2:
-						serv.action(canal, "La solution pour {0} se trouve sur:".format(arg2[1]))
+						serv.action(canal, "La solution pour {0} se trouve sur le wiki:".format(arg2[1]))
 						serv.action(canal, "http://crunchbanglinux-fr.org/wiki/?do=search&id={0}".format(arg2[1]))
+						serv.action(canal, "et sur le fofo")
+						serv.action(canal, "http://crunchbanglinux-fr.org/forum/search.php?action=search&keywords={0}".format(arg2[1]))
 							
 				if (mot == "bonjour") or (mot == "salut"):
 					serv.action(canal, "Salut {0}".format(auteur))
