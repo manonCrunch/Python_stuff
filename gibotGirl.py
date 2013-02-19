@@ -10,7 +10,7 @@ class BotManon(ircbot.SingleServerIRCBot):
 	
 	def __init__(self):
 		ircbot.SingleServerIRCBot.__init__(self, [("irc.freenode.net", 6667)], "gibotGirl", "Bot réalisé en Python avec ircbot")
-		self.mots = ["bonjour", "salut", "!volka", "!coffee", "!punch", "bye", "!help", "!tea", "!bj"]
+		self.mots = ["bonjour", "salut", "&volka", "&coffee", "&punch", "bye", "&help", "!&ea", "&bj", "&jb", "&fuck", "&pipe"]
 		self.actions = ["donne un coup de fouet à", "donne un coup de poing à", "donne un coup de pied à", "casse les cotes de", "donne un coup de fouet à", "donne un coup de pelle à", "donne un coup de tête à"] 		
 
 	def on_welcome(self, serv, ev):
@@ -22,24 +22,50 @@ class BotManon(ircbot.SingleServerIRCBot):
 		arg1 = ev.arguments()[0].lower() 	
 		arg2 = arg1.split(" ")
 		nombreArg = len(arg2)
-		
+
+		for mot in self.mots:
+
+			if mot in arg2[0]:
+
+				if (mot == "bonjour") or (mot == "salut"):
+					serv.action(canal, "Salut {0}".format(auteur))
+					break 
+
+				elif (mot == "&help"):
+					if nombreArg < 2:
+						serv.action(canal, "<&help>  <plugins> ")
+						serv.action(canal, "<&list_plugins>")
+						break
+					else:
+						for mot2 in self.plugins:
+							if mot2 in arg2[0]:
+								serv.action(canal, "{0} <speudo>".format(mot2))
+								break
+							else:
+								serv.action(canal, "Plugin non existant")
+								break
+				elif (mot == "&list_plugins"):
+					serv.action(canal, "Plugins: {0}".format(self.plugins))
+					break		
+
 		for mot in self.mots:
 
 			if mot in arg2[0]:
 				
-				if (mot == "!jb"):
+				if (mot == "&jb"):
 					serv.action(canal, "gibotGirl sert un jambon-beurre à {0}".format(auteur))
 				
-				if (mot == "!bj"):
+				if (mot == "&bj"):
 					serv.action(canal, "gibotGirl sert un beurre-jambon à {0}".format(auteur))
 							
-				if (mot == "!ff"):
-					srv.action(canal, "La solution pour {0} se trouve sur:".format(arg2[1]))			
+				if (mot == "&ff"):
+					serv.action(canal, "machin_bidule")	
+					serv.action(canal, "La solution pour {0} se trouve sur:".format(arg2[1]))			
 							
 				if (mot == "bonjour") or (mot == "salut"):
 					serv.action(canal, "Salut {0}".format(auteur))
 					
-				if (mot == "!coffee"):
+				if (mot == "&coffee"):
 					if nombreArg < 2 :
 						serv.action(canal, "gibotGirl paye son café à {0}".format(auteur))
 						break
@@ -47,13 +73,13 @@ class BotManon(ircbot.SingleServerIRCBot):
 						serv.action(canal, "{0} paye son café à {1}".format(auteur, arg2[1]))
 						break
 						
-				if (mot == "!punch"):
+				if (mot == "&punch"):
 					if nombreArg >= 2:
 						act  = randrange(0,len(self.actions))
 						serv.action(canal, "{0} {1}".format(self.actions[act], arg2[1]))
 						break
 						
-				if (mot == "!volka"):
+				if (mot == "&volka"):
 					if nombreArg < 2:
 						serv.action(canal, "gibotGirl trinque avec {0}".format(auteur))
 						break
@@ -69,7 +95,7 @@ class BotManon(ircbot.SingleServerIRCBot):
 							serv.action(canal, "{0} paye une volka a {1}".format(auteur, arg2[1]))
 							break
 							
-				if (mot == "!tea"):
+				if (mot == "&tea"):
 					if nombreArg < 2:
 						serv.action(canal, "gibotGirl met la bouilloire sur le feu...")
 						serv.action(canal, "et ça chauffe")
@@ -77,6 +103,14 @@ class BotManon(ircbot.SingleServerIRCBot):
 						time.sleep(4)	
 						serv.action(canal, "gibotGirl sert du thé à {0}".format(auteur))
 						break
+			
+				if (mot == "&pipe"):
+					serv.action(canal, "Non, pas de tabac pour moi, merci.")
+
+
+
+
+
 	def on_action(self, serv, ev):
 		auteur = irclib.nm_to_n(ev.source())
 		canal = ev.target()
