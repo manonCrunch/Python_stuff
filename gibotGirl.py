@@ -13,7 +13,7 @@ class BotManon(ircbot.SingleServerIRCBot):
 		ircbot.SingleServerIRCBot.__init__(self, [("irc.freenode.net", 6667)], "gibotGirl", "Bot réalisé en Python avec ircbot")
 		self.mots = ["bonjour", "salut", "bye", "&help", "&list_plugins"]
 		self.actions = ["donne un coup de fouet à", "donne un coup de poing à", "donne un coup de pied à", "casse les cotes de", "donne un coup de fouet à", "donne un coup de pelle à", "donne un coup de tête à"]
-		self.plugins = ["&volka", "&coffee", "&punch", "&fuck", "&search", "&tea",  "&bj"]
+		self.plugins = ["&volka", "&coffee", "&punch", "&fuck", "&recherche", "&tea",  "&bj"]
 
 	def on_welcome(self, serv, ev):
 		serv.join("#crunchbang-fr")
@@ -64,16 +64,19 @@ class BotManon(ircbot.SingleServerIRCBot):
 							
 				if (mot == "&search"):
 					if nombreArg >= 3:
-						if (type = re.search('w', arg2[1])) :
-							serv.action(canal, "dans le wiki: http://crunchbanglinux-fr.org/wiki/?do=search&id={0}".format(arg2[2])
-						if (type =re.search('f', arg2[1])):
-							serv.action(canal, "http://crunchbanglinux-fr.org/forum/search.php?action=search&keywords={0}".format(arg2[2]))
-						if (type =re.search('e', arg2[1])):
-							serv.action(canal, "http://crunchbang.org/forums/search.php?action=search&keywords={0}".format(arg2[2]))
-						break
-					else :
-						serv.action(canal, "usage: &search w[iki] f[orum] e[nglish] keyword1+keyword2+....")
+						if re.match("w", arg2[2]):
+							serv.action(canal, "dans le wiki: http://crunchbanglinux-fr.org/wiki/?do=search&id={0}".format(arg2[1]))
+							pass
+						if re.match("f", arg2[2]):
+							serv.action(canal, "http://crunchbanglinux-fr.org/forum/search.php?action=search&keywords={0}".format(arg2[1]))
+							pass
+						if re.match("e", arg2[2]):
+							serv.action(canal, "http://crunchbang.org/forums/search.php?action=search&keywords={0}".format(arg2[1]))
+							pass 
 						break 
+					else:
+						serv.action(canal, "usage: &search  <sujet< w[iki] f[orum] e[nglish] keyword1+keyword2+....")
+						break
 							
 				if (mot == "&coffee"):
 					if nombreArg < 2 :
