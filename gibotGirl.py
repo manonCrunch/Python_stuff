@@ -64,11 +64,11 @@ class BotManon(ircbot.SingleServerIRCBot):
 							
 				if (mot == "&search"):
 					if nombreArg >= 3:
-						if (re.search(arg2[1],'w')) :
+						if (type = re.search('w', arg2[1])) :
 							serv.action(canal, "dans le wiki: http://crunchbanglinux-fr.org/wiki/?do=search&id={0}".format(arg2[2])
-						if (re.search(arg2[1] ,'f')):
+						if (type =re.search('f', arg2[1])):
 							serv.action(canal, "http://crunchbanglinux-fr.org/forum/search.php?action=search&keywords={0}".format(arg2[2]))
-						if (re.search(arg2[1] ,'e')):
+						if (type =re.search('e', arg2[1])):
 							serv.action(canal, "http://crunchbang.org/forums/search.php?action=search&keywords={0}".format(arg2[2]))
 						break
 					else :
