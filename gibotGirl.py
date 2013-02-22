@@ -11,7 +11,7 @@ class BotManon(ircbot.SingleServerIRCBot):
 		ircbot.SingleServerIRCBot.__init__(self, [("irc.freenode.net", 6667)], "gibotGirl", "Bot réalisé en Python avec ircbot")
 		self.mots = ["bonjour", "salut", "bye", "&help", "&list_plugins"]
 		self.punch = ["donne un coup de fouet à", "donne un coup de poing à", "donne un coup de pied à", "casse les cotes de", "donne un coup de fouet à", "donne un coup de pelle à", "donne un coup de tête à"]
-		self.plugins = ["&volka", "&coffee", "&punch", "&fuck", "&ff"]		
+		self.plugins = ["&volka", "&coffee", "&punch", "&fuck", "&ff", "&tea"]		
 
 	def on_welcome(self, serv, ev):
 		serv.join("#crunchbang-fr")
@@ -87,6 +87,15 @@ class BotManon(ircbot.SingleServerIRCBot):
 						serv.action(canal, "http://crunchbanglinux-fr.org/wiki/?do=search&id={0}".format(arg2[1]))
 						serv.action(canal, "et sur le fofo")
 						serv.action(canal, "http://crunchbanglinux-fr.org/forum/search.php?action=search&keywords={0}".format(arg2[1]))
+						break
+				if (mot == "&tea"):
+					if nombreArg < 2:
+						serv.action(canal, "gibotGirl met la bouilloire sur le feu...")
+						time.sleep(2)
+						serv.action(canal, "et ça chauffe")
+						serv.action(canal, "et ça infuse")
+						time.sleep(4)	
+						serv.action(canal, "gibotGirl sert du thé à {0}".format(auteur))
 						break
 							
 	def on_action(self, serv, ev):
