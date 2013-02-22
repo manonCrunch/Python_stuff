@@ -3,6 +3,7 @@
  
 import irclib
 import ircbot
+import time 
 from random import randrange
 
 class BotManon(ircbot.SingleServerIRCBot):
