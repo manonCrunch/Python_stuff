@@ -98,6 +98,22 @@ class BotManon(ircbot.SingleServerIRCBot):
 						time.sleep(4)	
 						serv.action(canal, "gibotGirl sert du thé à {0}".format(auteur))
 						break
+				if (mot == "&recherche"):
+					if nombreArg >= 3 :
+						
+						if re.match("w", arg2[2]):
+							serv.action(canal, "dans le wiki: http://crunchbanglinux-fr.org/wiki/?do=search&id={0}".format(arg2[1]))
+							pass
+						if re.match("f", arg2[2]):
+							serv.action(canal, "http://crunchbanglinux-fr.org/forum/search.php?action=search&keywords={0}".format(arg2[1]))
+							pass
+						if re.match("e", arg2[2]):
+							serv.action(canal, "http://crunchbang.org/forums/search.php?action=search&keywords={0}".format(arg2[1]))
+							pass 
+						break 
+					else:
+						serv.action(canal, "usage: &search  <sujet< w[iki] f[orum] e[nglish] keyword1+keyword2+....")
+						break
 							
 	def on_action(self, serv, ev):
 		auteur = irclib.nm_to_n(ev.source())
