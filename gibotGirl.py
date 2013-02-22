@@ -10,8 +10,9 @@ class BotManon(ircbot.SingleServerIRCBot):
 	
 	def __init__(self):
 		ircbot.SingleServerIRCBot.__init__(self, [("irc.freenode.net", 6667)], "gibotGirl", "Bot réalisé en Python avec ircbot")
-		self.mots = ["bonjour", "salut", "&volka", "&coffee", "&punch", "bye", "&help", "&tea", "&bj", "&jb", "&fuck", "&pipe", "&ff"]
-		self.actions = ["donne un coup de fouet à", "donne un coup de poing à", "donne un coup de pied à", "casse les cotes de", "donne un coup de fouet à", "donne un coup de pelle à", "donne un coup de tête à"] 		
+		self.mots = ["bonjour", "salut", "bye", "&help", "&list_plugins"]
+		self.actions = ["donne un coup de fouet à", "donne un coup de poing à", "donne un coup de pied à", "casse les cotes de", "donne un coup de fouet à", "donne un coup de pelle à", "donne un coup de tête à"]
+		self.plugins = ["&volka", "&coffee", "&punch", "&fuck", "&ff", "&tea", "&tea", "&bj"]
 
 	def on_welcome(self, serv, ev):
 		serv.join("#crunchbang-fr")
@@ -48,15 +49,17 @@ class BotManon(ircbot.SingleServerIRCBot):
 					serv.action(canal, "Plugins: {0}".format(self.plugins))
 					break		
 
-		for mot in self.mots:
+		for mot in self.plugins:
 
 			if mot in arg2[0]:
 				
 				if (mot == "&jb"):
 					serv.action(canal, "gibotGirl sert un jambon-beurre à {0}".format(auteur))
+					break
 				
 				if (mot == "&bj"):
 					serv.action(canal, "gibotGirl sert un beurre-jambon à {0}".format(auteur))
+					break
 							
 				if (mot == "&ff"):
 					if nombreArg >= 2:
@@ -64,6 +67,7 @@ class BotManon(ircbot.SingleServerIRCBot):
 						serv.action(canal, "http://crunchbanglinux-fr.org/wiki/?do=search&id={0}".format(arg2[1]))
 						serv.action(canal, "et sur le fofo")
 						serv.action(canal, "http://crunchbanglinux-fr.org/forum/search.php?action=search&keywords={0}".format(arg2[1]))
+						break
 							
 				if (mot == "&coffee"):
 					if nombreArg < 2 :
@@ -98,6 +102,7 @@ class BotManon(ircbot.SingleServerIRCBot):
 				if (mot == "&tea"):
 					if nombreArg < 2:
 						serv.action(canal, "gibotGirl met la bouilloire sur le feu...")
+						time.sleep(2)
 						serv.action(canal, "et ça chauffe")
 						serv.action(canal, "et ça infuse")
 						time.sleep(4)	
@@ -106,10 +111,7 @@ class BotManon(ircbot.SingleServerIRCBot):
 			
 				if (mot == "&pipe"):
 					serv.action(canal, "Non, pas de tabac pour moi, merci.")
-
-
-
-
+					break
 
 	def on_action(self, serv, ev):
 		auteur = irclib.nm_to_n(ev.source())
