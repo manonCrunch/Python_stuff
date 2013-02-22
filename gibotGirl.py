@@ -4,6 +4,7 @@
 import irclib
 import ircbot
 import time
+import re
 from random import randrange
 
 class BotManon(ircbot.SingleServerIRCBot):
@@ -12,7 +13,7 @@ class BotManon(ircbot.SingleServerIRCBot):
 		ircbot.SingleServerIRCBot.__init__(self, [("irc.freenode.net", 6667)], "gibotGirl", "Bot réalisé en Python avec ircbot")
 		self.mots = ["bonjour", "salut", "bye", "&help", "&list_plugins"]
 		self.actions = ["donne un coup de fouet à", "donne un coup de poing à", "donne un coup de pied à", "casse les cotes de", "donne un coup de fouet à", "donne un coup de pelle à", "donne un coup de tête à"]
-		self.plugins = ["&volka", "&coffee", "&punch", "&fuck", "&ff", "&tea", "&tea", "&bj"]
+		self.plugins = ["&volka", "&coffee", "&punch", "&fuck", "&search", "&tea",  "&bj"]
 
 	def on_welcome(self, serv, ev):
 		serv.join("#crunchbang-fr")
@@ -61,13 +62,18 @@ class BotManon(ircbot.SingleServerIRCBot):
 					serv.action(canal, "gibotGirl sert un beurre-jambon à {0}".format(auteur))
 					break
 							
-				if (mot == "&ff"):
-					if nombreArg >= 2:
-						serv.action(canal, "La solution pour {0} se trouve sur le wiki:".format(arg2[1]))
-						serv.action(canal, "http://crunchbanglinux-fr.org/wiki/?do=search&id={0}".format(arg2[1]))
-						serv.action(canal, "et sur le fofo")
-						serv.action(canal, "http://crunchbanglinux-fr.org/forum/search.php?action=search&keywords={0}".format(arg2[1]))
+				if (mot == "&search"):
+					if nombreArg >= 3:
+						if (re.search(arg2[1],'w')) :
+							serv.action(canal, "dans le wiki: http://crunchbanglinux-fr.org/wiki/?do=search&id={0}".format(arg2[2])
+						if (re.search(arg2[1] ,'f')):
+							serv.action(canal, "http://crunchbanglinux-fr.org/forum/search.php?action=search&keywords={0}".format(arg2[2]))
+						if (re.search(arg2[1] ,'e')):
+							serv.action(canal, "http://crunchbang.org/forums/search.php?action=search&keywords={0}".format(arg2[2]))
 						break
+					else :
+						serv.action(canal, "usage: &search w[iki] f[orum] e[nglish] keyword1+keyword2+....")
+						break 
 							
 				if (mot == "&coffee"):
 					if nombreArg < 2 :
@@ -100,14 +106,16 @@ class BotManon(ircbot.SingleServerIRCBot):
 							break
 							
 				if (mot == "&tea"):
-					if nombreArg < 2:
+					if nombreArg >= 2:
 						serv.action(canal, "gibotGirl met la bouilloire sur le feu...")
 						time.sleep(2)
 						serv.action(canal, "et ça chauffe")
 						serv.action(canal, "et ça infuse")
 						time.sleep(4)	
-						serv.action(canal, "gibotGirl sert du thé à {0}".format(auteur))
+						serv.action(canal, "gibotGirl sert du thé à {0}".format(arg2[1]))
 						break
+					else:
+						serv.action(canal, "pff pourrais au moins partager, non?")
 			
 				if (mot == "&pipe"):
 					serv.action(canal, "Non, pas de tabac pour moi, merci.")
