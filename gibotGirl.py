@@ -4,6 +4,7 @@
 import irclib
 import ircbot
 import time 
+import re
 from random import randrange
 
 class BotManon(ircbot.SingleServerIRCBot):
@@ -12,7 +13,7 @@ class BotManon(ircbot.SingleServerIRCBot):
 		ircbot.SingleServerIRCBot.__init__(self, [("irc.freenode.net", 6667)], "gibotGirl", "Bot réalisé en Python avec ircbot")
 		self.mots = ["bonjour", "salut", "bye", "&help", "&list_plugins"]
 		self.punch = ["donne un coup de fouet à", "donne un coup de poing à", "donne un coup de pied à", "casse les cotes de", "donne un coup de fouet à", "donne un coup de pelle à", "donne un coup de tête à"]
-		self.plugins = ["&volka", "&coffee", "&punch", "&fuck", "&ff", "&tea"]		
+		self.plugins = ["&volka", "&coffee", "&punch", "&fuck", "&ff", "&tea", "&recherche"]		
 
 	def on_welcome(self, serv, ev):
 		serv.join("#crunchbang-fr")
