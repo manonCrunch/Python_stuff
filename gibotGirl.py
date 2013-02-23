@@ -64,11 +64,11 @@ class BotManon(ircbot.SingleServerIRCBot):
 								serv.action(canal, "Plugin non existant")
 								break
 				'''------------------------------------------------------------------------------'''			
-				elif (mot == "&list_plugins"):
+				if (mot == "&list_plugins"):
 					serv.action(canal, "Plugins: {0}".format(self.plugins))
 					break
 				'''------------------------------------------------------------------------------'''
-				elif (mot == "&punch"):
+				if (mot == "&punch"):
 					if nombreArg >= 2:
 						act  = randrange(0,len(self.punch))
 						if (arguments[1] == "gibotgirl"):
@@ -78,7 +78,7 @@ class BotManon(ircbot.SingleServerIRCBot):
 							serv.action(canal, "{0} {1}".format(self.punch[act], arguments[1]))
 							break
 				'''------------------------------------------------------------------------------'''
-				elif (mot == "&kiss"):
+				if (mot == "&kiss"):
 					if nombreArg >= 2:
 						serv.action(canal, "fait un bisous à {0}".format(arguments[1]))
 						break
@@ -86,7 +86,7 @@ class BotManon(ircbot.SingleServerIRCBot):
 						serv.action(canal, "fait un bisous à {0}".format(auteur))
 						break
 				'''------------------------------------------------------------------------------'''
-				elif (mot == "&tea"):
+				if (mot == "&tea"):
 					if nombreArg >= 2:
 						serv.action(canal, "met la bouilloire sur le feu...")
 						time.sleep(2)
@@ -96,7 +96,7 @@ class BotManon(ircbot.SingleServerIRCBot):
 						serv.action(canal, "sert du thé à {0}".format(arguments[1]))
 						break
 				'''-------------------------------------------------------------------------------'''
-				elif (mot == "&volka"):
+				if (mot == "&volka"):
 					if nombreArg < 2:
 						serv.action(canal, "prend une volka avec {0}".format(auteur))
 						break
