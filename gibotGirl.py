@@ -32,7 +32,7 @@ class BotManon(ircbot.SingleServerIRCBot):
 				if (arguments[1] == "gibotgirl") or (arguments[1] == "gibotGirl"):
 					serv.action(canal, "bonjour {0}".format(auteur))
 		'''--------------------------------------------------------------------------'''			
-		if re.match("^&recherche", arg1):
+		if re.match("^&recherche", message):
 			if nombreArg >= 3 :
 						
 				if re.match("w", arguments[2]):
