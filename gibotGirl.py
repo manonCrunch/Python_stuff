@@ -71,7 +71,7 @@ class BotManon(ircbot.SingleServerIRCBot):
 				if (mot == "&punch"):
 					if nombreArg >= 2:
 						act  = randrange(0,len(self.punch))
-						if (arguments[1] == "gibotgirl"):
+						if (arguments[1] == "gibotgirl") or (arguments[1] == "gibotGirl"):
 							serv.action(canal, "donne un gros coup de pelle à {0}".format(auteur))
 							break
 						else:
