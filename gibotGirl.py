@@ -29,7 +29,7 @@ class BotManon(ircbot.SingleServerIRCBot):
 		'''------------------------------------------------------------------------'''
 		if re.match("^bonjour", message) or re.match("^salut", message):
 			if nombreArg >= 2 :
-				if arg2[1] == "gibotgirl":
+				if (arguments[1] == "gibotgirl") or (arguments[1] == "gibotGirl"):
 					serv.action(canal, "bonjour {0}".format(auteur))
 		'''--------------------------------------------------------------------------'''			
 		if re.match("^&recherche", arg1):
