@@ -25,7 +25,7 @@ class BotManon(ircbot.SingleServerIRCBot):
 		canal = ev.target()
 		message = ev.arguments()[0].lower() 	
 		arguments = message.split(" ")
-		nombreArg = len(arg2)
+		nombreArg = len(arguments)
 		'''------------------------------------------------------------------------'''
 		if re.match("^bonjour", message) or re.match("^salut", message):
 			if nombreArg >= 2 :
