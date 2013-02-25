@@ -129,6 +129,22 @@ class BotManon(ircbot.SingleServerIRCBot):
 							break
 						serv.action(canal, "{0} paye son café à {1}".format(auteur, arguments[1]))
 						break
+				'''----------------------------------------------------------------------------------------'''
+				if (mot == "&donuts"):
+					if nombreArg < 2 :
+						serv.action(canal, "&donuts + <speudo>")
+						break
+					else:
+						act  = randrange(1,6)
+						if (act == 1) or (act == 2):
+							serv.privmsg(canal, "Homer a tout mangé")
+							break
+						elif (arguments[1] == "*") or (arguments[1] == "all"):
+							serv.action(canal, "paye sa tournée de Donuts")
+							break
+						else:
+							serv.action(canal, "{0} paye son Donuts à {1}".format(auteur, arguments[1]))
+							break
 				'''------------------------------------------------------------------------------------
 				if (mot == "&ff"):
 					if nombreArg >= 2:
