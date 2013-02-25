@@ -35,13 +35,13 @@ class BotManon(ircbot.SingleServerIRCBot):
 		if re.match("^&recherche", message):
 			if nombreArg >= 3 :
 						
-				if re.match("w", arguments[2]):
+				if re.match('.*w.*', arguments[2]):
 					serv.action(canal, "dans le wiki: http://crunchbanglinux-fr.org/wiki/?do=search&id={0}".format(arguments[1]))
 							
-				if re.match("f", arguments[2]):
+				if re.match('.*f.*', arguments[2]):
 					serv.action(canal, "http://crunchbanglinux-fr.org/forum/search.php?action=search&keywords={0}".format(arguments[1]))
 							
-				if re.match("e", arguments[2]):
+				if re.match('.*e.*', arguments[2]):
 					serv.action(canal, "http://crunchbang.org/forums/search.php?action=search&keywords={0}".format(arguments[1]))
 		 
 			else:
