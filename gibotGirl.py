@@ -12,7 +12,7 @@ class BotManon(ircbot.SingleServerIRCBot):
 	
 	def __init__(self):
 		ircbot.SingleServerIRCBot.__init__(self, [("irc.freenode.net", 6667)], "gibotGirl", "Bot réalisé en Python avec ircbot")
-		self.plugins = ["&help", "&list_plugins", "&recherche", "&volka", "&coffee", "&punch", "&tea", "&kiss"]
+		self.plugins = ["&help", "&list_plugins", "&recherche", "&volka", "&coffee", "&punch", "&tea", "&kiss", "&donuts"]
 		self.punch = ["donne un coup de fouet à", "donne un coup de poing à", "donne un coup de pied à", "casse les cotes de", "donne un coup de fouet à", "donne un coup de pelle à", "donne un coup de tête à"]
 		
 	'''----------------------------------------------------------------'''	  	
@@ -80,9 +80,13 @@ class BotManon(ircbot.SingleServerIRCBot):
 				'''------------------------------------------------------------------------------'''
 				if (mot == "&kiss"):
 					if nombreArg >= 2:
-						serv.action(canal, "fait un bisous à {0}".format(arguments[1]))
-						break
-					else :
+						if (arguments[1] == "*") or (arguments[1] == "all"):
+							serv.privmsg(canal, "Je suis pas une fille facile")
+							break
+						elif:	
+							serv.action(canal, "fait un bisous à {0}".format(arguments[1]))
+							break
+					else :	
 						serv.action(canal, "fait un bisous à {0}".format(auteur))
 						break
 				'''------------------------------------------------------------------------------'''
@@ -101,6 +105,9 @@ class BotManon(ircbot.SingleServerIRCBot):
 						serv.action(canal, "prend une volka avec {0}".format(auteur))
 						break
 					else:
+						if (arguments[1] == "*") or (arguments[1] == "all") :
+							serv.action(canal, "paye sa tournée de volka")
+							break
 						droit = randrange(1,9)
 						if (droit == 1) or (droit == 2):
 							serv.action(canal, "Non {0} a trop prit de volka".format(arguments[1]))
@@ -117,6 +124,9 @@ class BotManon(ircbot.SingleServerIRCBot):
 						serv.action(canal, "gibotGirl paye son café à {0}".format(auteur))
 						break
 					else:
+						if (arguments[1] == "*") or (arguments[1] == "all"):
+							serv.action(canal, "paye sa tournée de café")
+							break
 						serv.action(canal, "{0} paye son café à {1}".format(auteur, arguments[1]))
 						break
 				'''------------------------------------------------------------------------------------
