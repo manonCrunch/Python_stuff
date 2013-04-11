@@ -23,7 +23,8 @@ chdir(".gibotGirl")
 class BotManon(ircbot.SingleServerIRCBot):
 
 	def __init__(self):
-		ircbot.SingleServerIRCBot.__init__(self, [("irc.freenode.net", 6667)], "gibotGirl", "Bot réalisé en Python avec ircbot")
+		ircbot.SingleServerIRCBot.__init__(self, [("irc.freenode.net", 6667)],
+							"gibotGirl", "Bot réalisé en Python avec ircbot")
 		self.plugins = ["&help", "&list_plugins", "&recherche", "&vodka", "&coffee",
 						"&punch", "&tea", "&kiss", "&donuts", "&spam"]
 		self.punch = ["donne un coup de fouet à", "donne un coup de poing à", "donne un coup de pied à", 
@@ -53,13 +54,16 @@ class BotManon(ircbot.SingleServerIRCBot):
 			if nombreArg >= 3 :
 
 				if re.match('.*w.*', arguments[-1]):
-					serv.action(canal, "dans le wiki: http://crunchbanglinux-fr.org/wiki/?do=search&id={0}".format(arguments[1]))
+					serv.action(canal, 
+                                "dans le wiki: http://crunchbanglinux-fr.org/wiki/?do=search&id={0}".format(arguments[1]))
 
 				if re.match('.*f.*', arguments[-1]):
-					serv.action(canal, "http://crunchbanglinux-fr.org/forum/search.php?action=search&keywords={0}".format(arguments[1]))
+					serv.action(canal, 
+                                "http://crunchbanglinux-fr.org/forum/search.php?action=search&keywords={0}".format(arguments[1]))
 
 				if re.match('.*e.*', arguments[-1]):
-					serv.action(canal, "http://crunchbang.org/forums/search.php?action=search&keywords={0}".format(arguments[1]))
+					serv.action(canal, 
+                                "http://crunchbang.org/forums/search.php?action=search&keywords={0}".format(arguments[1]))
 			else:
 				serv.action(canal, "usage: &recherche  <sujet> w[iki] f[orum] e[nglish] keyword1+keyword2+....")
 		
