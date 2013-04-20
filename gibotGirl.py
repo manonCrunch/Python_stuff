@@ -49,23 +49,12 @@ class BotManon(ircbot.SingleServerIRCBot):
 			if nombreArg >= 2 :
 				if (arguments[1] == "gibotgirl") or (arguments[1] == "gibotGirl"):
 					serv.privmsg(canal, "bonjour {0}".format(auteur))
-			
+					
 		if re.match("^&recherche", message):
-			if nombreArg >= 3 :
-
-				if re.match('.*w.*', arguments[-1]):
-					serv.action(canal, 
-                                "dans le wiki: http://crunchbanglinux-fr.org/wiki/?do=search&id={0}".format(arguments[1]))
-
-				if re.match('.*f.*', arguments[-1]):
-					serv.action(canal, 
-                                "http://crunchbanglinux-fr.org/forum/search.php?action=search&keywords={0}".format(arguments[1]))
-
-				if re.match('.*e.*', arguments[-1]):
-					serv.action(canal, 
-                                "http://crunchbang.org/forums/search.php?action=search&keywords={0}".format(arguments[1]))
-			else:
-				serv.action(canal, "usage: &recherche  <sujet> w[iki] f[orum] e[nglish] keyword1+keyword2+....")
+			mes2 = message.lstrip("&recherche")
+			rech = mes2.replace(' ', '+')
+			url = "http://www.google.com/search?q="+rech
+			serv.privmsg(canal, "{0}".format(url))	
 		
 		for mot in self.plugins:
 			if mot in arguments[0]:
