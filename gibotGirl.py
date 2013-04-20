@@ -28,7 +28,8 @@ class BotManon(ircbot.SingleServerIRCBot):
 		self.plugins = ["&help", "&list_plugins", "&recherche", "&vodka", "&coffee",
 						"&punch", "&tea", "&kiss", "&donuts", "&spam"]
 		self.punch = ["donne un coup de fouet à", "donne un coup de poing à", "donne un coup de pied à", 
-						"casse les cotes de", "donne un coup de fouet à", "donne un coup de pelle à", 
+						"casse les cotes de", "donne un coup de fouet à",
+						"donne un coup de pelle à", 
 						"donne un coup de tête à"]
 	  	
 	def on_welcome(self, serv, ev):
